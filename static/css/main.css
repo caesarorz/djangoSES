@@ -1,0 +1,13 @@
+/* Move down content because we have a fixed navbar that is 3.5rem tall */
+body {
+  padding-top: 3.5rem;
+  color: black;
+}
+
+.join-form-style {
+  padding: 10px;
+}
+
+#id_email{
+  width:330px;
+}

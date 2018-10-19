@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+<style>
+{% block styles %}
+    {% if object.nav_color != '#000000' %}
+    .bg-dark {
+        background-color: {{ object.nav_color }} !important;
+        border-color:{{ object.nav_color }}
+    }
+    {% endif %}
+    {% if not object.show_nav %}
+    body {
+      padding-top: 0px;
+      padding-bottom: 0px;
+    }
+    {% endif %}
+
+    .jumbotron {
+          background-color: {{ object.jumbotron_bgcolor }} !important;
+          color: {{ object.jumbotron_textcolor }} !important;
+        }
+{% endblock %}
+</style>
+
+<script type="text/javascript">
+{% block jquery %}
+
+{% endblock %}
+</script>
+
+
+{% block content %}
+
+{% if object.show_nav %}
+    {% include 'navbar.html' %}
+{% endif %}
+{% if object.layout == 'stacked' %}
+    {% include 'pages/snippet/stacked-layout.html' with page_obj=object form=form %}
+{% else %}
+    {% include 'pages/snippet/standard-layout.html' with page_obj=object form=form %}
+{% endif %}
+
+
+
+{% if object.leave_capture %}
+    <span class='leave_capture' show='false'></span>
+{% endif %}
+
+{% endblock content %}

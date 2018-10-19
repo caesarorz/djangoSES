@@ -1,0 +1,22 @@
+<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+        </div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4>Almost there...</h4>
+        <h4 class="modal-title" id="exampleModalLabel">Are you sure you want to leave?</h4>
+      </div>
+
+        <div class="modal-body">
+          {% include "newsletter/snippets/signup-form.html" %}
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+  </div>
+</div>

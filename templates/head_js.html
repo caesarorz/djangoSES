@@ -1,0 +1,61 @@
+{% load static %}
+
+<!-- All javascript code -->
+<script src="{% static "js/popper.min.js" %}"></script>
+<script src="{% static "js/jquery-3.1.1.min.js" %}"></script>
+<script src="{% static "js/bootstrap.min.js" %}"></script>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    {% block jquery %}{% endblock %}
+  });
+</script>
+
+<script>
+  $(document).ready(function(){
+
+    var marketingModal = $("#signupModal");
+    var didDidmissModal = false;
+    var doShowMaketing = false;
+
+    doShowMaketing = $(".leave_capture").attr('show');
+    console.log(doShowMaketing);
+
+    $("body").mouseleave(function(){
+      if(!didDidmissModal && doShowMaketing){
+        marketingModal.modal();
+      }
+    });
+
+    marketingModal.on("hidden.bs.modal", function(e){
+      didDidmissModal = true;
+    })
+
+    $(".join-form").submit(function(e){
+      e.preventDefault();
+      var this_ = $(this);
+      console.log($(this).serialize());
+      var joinEmailAPIEndpoint = "{% url 'email-join' %}";
+      $.ajax({
+        method: "POST",
+        data: this_.serialize(),
+        url: joinEmailAPIEndpoint,
+        success: function(data){
+          marketingModal.modal("hide");
+          didDidmissModal = true;
+          // console.log("success "+data);
+          this_.parent().html("<p class='lead'>Success. Thanks for joining</p>");
+        },
+        error: function(data){
+
+          $(".join-form-alert").fadeIn();
+          this_.find(".join-form-alert").fadeIn();
+          this_.find(".join-form-error").text(data.responseJSON.email[0]);
+          // $(".join-form-error").text(data.responseJSON.email[0]);
+          console.log(data);
+        }
+      });
+    });
+
+  });
+</script>

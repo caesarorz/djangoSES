@@ -1,0 +1,39 @@
+
+
+ <form class='join-form form-inline text-center' method='POST' action=''>{% csrf_token %}
+
+   <div class="join-form-alert alert alert-warning alert-dismissible fade show" style="display:none;" role="alert">
+     <span class="join-form-error"></span>
+     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+       <span aria-hidden="true">&times;</span>
+     </button>
+   </div>
+
+    <div class='input-group'>
+      <label style='padding: 0px 20px;font-size: 20px;'>
+      Join Us
+      </label>
+    </div>
+
+    {% for field in form %}
+    {{ form.non.field_errors }}
+    <!--alert for error-->
+      {% if field.errors %}
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>{{ field.errors }}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% endif %}
+      <div class="input-group">
+        {{ field }}
+       <div class="input-group-prepend">
+         <span class="input-group-text" id="basic-addon1"><i class="fas fa-envelope"></i></span>
+       </div>
+
+    </div><!-- /input-group -->
+    {% endfor %}
+
+    <input type='submit' value='Join' class='btn btn-primary' />
+</form>
