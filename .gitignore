@@ -1,0 +1,4 @@
+# gitignore file
+
+cfehome/settings.py
+cfehome/settingsBack/
