@@ -31,6 +31,7 @@
 
 {% block content %}
 
+
 {% if object.show_nav %}
     {% include 'navbar.html' %}
 {% endif %}
@@ -39,7 +40,6 @@
 {% else %}
     {% include 'pages/snippet/standard-layout.html' with page_obj=object form=form %}
 {% endif %}
-
 
 
 {% if object.leave_capture %}

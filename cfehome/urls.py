@@ -16,11 +16,14 @@ Including another URLconf
 from django.urls import include, path, re_path
 from django.contrib import admin
 
-from pages.views import HomeView, PageDetailView
+from pages.views import HomeView, PageDetailView, contact_page, login_page, register_page
 from newsletter.api.views import JoinCreateAPIView
 
 urlpatterns = [
     re_path(r'^$', HomeView.as_view(), name='home'),
+    re_path(r'^login/$', login_page, name='login'),
+    re_path(r'^register/$', register_page, name='register'),
+    re_path(r'^contact/$', contact_page, name='contact'),
     re_path(r'^admin/', admin.site.urls),
     re_path(r'api/email/join/$', JoinCreateAPIView.as_view(), name='email-join'),
     re_path(r'^(?P<slug>[\w-]+)/$', PageDetailView.as_view(), name='page-detail'),
