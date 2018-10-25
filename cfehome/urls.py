@@ -20,14 +20,16 @@ from django.contrib.auth.views import LogoutView
 from pages.views import HomeView, PageDetailView, contact_page
 from accounts.views import LoginView, RegisterView #register_page, login_page,
 from newsletter.api.views import JoinCreateAPIView
+from appoinments.views import DateView
 
 urlpatterns = [
     re_path(r'^$', HomeView.as_view(), name='home'),
     re_path(r'^login/$', LoginView.as_view(), name='login'),
     re_path(r'^logout$', LogoutView.as_view(), name='logout'),
     re_path(r'^register/$', RegisterView.as_view(), name='register'),
+    # re_path(r'^date/$', DateView.as_view(), name='date'),
     re_path(r'^contact/$', contact_page, name='contact'),
-    re_path(r'^admin/', admin.site.urls),
     re_path(r'api/email/join/$', JoinCreateAPIView.as_view(), name='email-join'),
     re_path(r'^(?P<slug>[\w-]+)/$', PageDetailView.as_view(), name='page-detail'),
+    re_path(r'^admin/', admin.site.urls),
 ]

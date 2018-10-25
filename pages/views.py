@@ -1,3 +1,8 @@
+#aws ses
+from django.conf import settings
+from django.core.mail import send_mail
+from django.template.loader import get_template
+
 from django.contrib.auth import authenticate, login, get_user_model
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render, redirect
@@ -47,7 +52,21 @@ def contact_page(request):
     template = "contact/view.html"
 
     if form.is_valid():
-        print(form.cleaned_data)
+        username = form.cleaned_data.get("fullname")
+        email = form.cleaned_data.get("email")
+        content = form.cleaned_data.get("content")
+        print(username)
+        print(email)
+        print(content)
+
+
+        send_mail(
+            'Contact Us',
+            content,
+            email,
+            ['caesar.orz@gmail.com'],
+            fail_silently=False,
+        )
 
     context = {
         "form": form
